@@ -219,9 +219,17 @@ PrefabInstance:
       value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 480468839708379382, guid: 1cc7fa72c67267a448b132a4a3d88d6a, type: 3}
+      propertyPath: _speed
+      value: 350
+      objectReference: {fileID: 0}
+    - target: {fileID: 480468839708379382, guid: 1cc7fa72c67267a448b132a4a3d88d6a, type: 3}
       propertyPath: _bullet
       value: 
       objectReference: {fileID: 617940038665507308, guid: 43cc4ee1f7614074aab1afd3be3f4fa9, type: 3}
+    - target: {fileID: 480468839708379382, guid: 1cc7fa72c67267a448b132a4a3d88d6a, type: 3}
+      propertyPath: _angleSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3304005334619110661, guid: 1cc7fa72c67267a448b132a4a3d88d6a, type: 3}
       propertyPath: m_RootOrder
       value: 1
