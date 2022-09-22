@@ -29,15 +29,22 @@ public class Bullet : MonoBehaviour
     {
         _lastVel = _rg2.velocity;
     }
+
+
+    void Reflect(Collision2D collision)
+    {
+        var speed = _lastVel.magnitude;
+        var direction = Vector3.Reflect(_lastVel.normalized, collision.contacts[0].normal);
+        _rg2.velocity = direction * Mathf.Max(speed, 1f);
+    }
+
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag(WALL_TAG))
         {
-            var speed = _lastVel.magnitude;
-            var direction = Vector3.Reflect(_lastVel.normalized, collision.contacts[0].normal);
-            _rg2.velocity = direction * Mathf.Max(speed, 1f);
+            Reflect(collision);
         }
-        if (collision.collider.CompareTag(PLAYER_TAG)|| collision.collider.CompareTag(ENEMY_TAG))
+        if (collision.collider.CompareTag(PLAYER_TAG) || collision.collider.CompareTag(ENEMY_TAG))
         {
             _victim = collision.gameObject;
             Destroy(gameObject);

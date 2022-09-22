@@ -37,14 +37,14 @@ public class PlayerControll : MonoBehaviour
         _rb2.velocity = dir * Time.deltaTime * _speed;
     }
 
-    public void Shot()
+    void Shot()
     {
         Instantiate(_bullet, transform.position + transform.right, transform.rotation);
     }
     void Rotate()
     {
         _mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        if(_mousePosition != oldPos)
+        if (_mousePosition != oldPos)
         {
             Vector3 difference = _mousePosition - transform.position;
             difference.Normalize();

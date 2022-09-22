@@ -11,12 +11,12 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Arena
   - Water
   - UI
-  - 
-  - 
-  - 
+  - Bullet
+  - Wall
+  - Enemy
   - 
   - 
   - 
