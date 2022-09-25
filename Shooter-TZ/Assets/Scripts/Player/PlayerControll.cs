@@ -39,7 +39,7 @@ public class PlayerControll : MonoBehaviour
 
     void Shot()
     {
-        Instantiate(_bullet, transform.position + transform.right, transform.rotation);
+        _bullet.GetComponent<Bullet>().Shot(gameObject , transform.rotation.z);
     }
     void Rotate()
     {

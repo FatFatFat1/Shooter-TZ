@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         {
             Vector3 dir = target.transform.position - transform.position;
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            Instantiate(_bullet, transform.position + transform.right, Quaternion.Euler(0, 0, angle));
+            _bullet.GetComponent<Bullet>().Shot(gameObject, angle);
             Vector3 difference = target.transform.position - transform.position;
             difference.Normalize();
             float rotation_z = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;

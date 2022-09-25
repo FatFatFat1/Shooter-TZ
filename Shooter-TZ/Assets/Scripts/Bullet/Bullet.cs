@@ -6,7 +6,8 @@ public class Bullet : MonoBehaviour
 {
     private Rigidbody2D _rg2;
     private Vector3 _lastVel;
-    private GameObject _victim;
+    private string _source;
+
     [SerializeField] private float _bulletSpeed;
 
     private const string WALL_TAG = "Wall";
@@ -14,23 +15,20 @@ public class Bullet : MonoBehaviour
     private const string ENEMY_TAG = "Enemy";
     private const string ARENA_TAG = "Arena";
 
-    private void Awake()
+    public void Shot(GameObject shooter, float angle)
+    {
+        GameObject bullet = Instantiate(gameObject, shooter.transform.position + shooter.transform.right, Quaternion.Euler(0f, 0f, angle));
+        bullet.GetComponent<Bullet>()._source = shooter.tag;
+        bullet.GetComponent<Rigidbody2D>().AddForce(shooter.transform.right.normalized * _bulletSpeed);
+    }
+    private void Start()
     {
         _rg2 = GetComponent<Rigidbody2D>();
-
     }
-
-    void Start()
-    {
-        _rg2.AddForce(transform.right.normalized * _bulletSpeed);
-    }
-
     private void Update()
     {
         _lastVel = _rg2.velocity;
     }
-
-
     void Reflect(Collision2D collision)
     {
         var speed = _lastVel.magnitude;
@@ -46,8 +44,13 @@ public class Bullet : MonoBehaviour
         }
         if (collision.collider.CompareTag(PLAYER_TAG) || collision.collider.CompareTag(ENEMY_TAG))
         {
-            _victim = collision.gameObject;
+            string victim = collision.gameObject.tag;
+            if (_source != victim)
+            {
+                collision.gameObject.GetComponent<CharacterData>().Scope += 1;
+            }
             Destroy(gameObject);
+
         }
         if (collision.collider.CompareTag(ARENA_TAG))
         {
